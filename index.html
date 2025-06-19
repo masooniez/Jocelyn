@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Journey Through Months</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffdae2 0%, #e1d4fd 100%);
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjZTYzOTQ2IiBkPSJNMTIgMjEuMzVsLTEuNDUtMS4zMkM1LjQgMTUuMzYgMiAxMi4yOCAyIDguNSAyIDUuNDIgNC40MiAzIDcuNSAzYzEuNzQgMCAzLjQxLjgxIDQuNSAyLjA5QzEzLjA5IDMuODEgMTQuNzYgMyAxNi41IDMgMTkuNTggMyAyMiA1LjQyIDIyIDguNWMwIDMuNzgtMy40IDYuODYtOC41NSAxMS41NEwxMiAyMS4zNXoiLz48L3N2Zz4=") 8 8, auto;
+        }
+
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff4d6d;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .months-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .month-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .month-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .month-box h2 {
+            color: #ff4d6d;
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .collage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .collage-content {
+            background: white;
+            max-width: 90%;
+            max-height: 90vh;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .image-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .month-title {
+            text-align: center;
+            color: #ff4d6d;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .memory-lane-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.5em;
+            color: #ff4d6d;
+            font-weight: bold;
+            min-width: 260px;
+            margin-top: 0;
+            margin-left: 50px;
+        }
+        .memory-lane-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: #ffe0eb;
+            color: #d72660;
+        }
+        
+        .top-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 200px;
+            max-width: 1400px;
+            margin: 0 auto 40px auto;
+            align-items: start;
+        }
+        .things-you-like-box{
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.5em;
+            color: #ff4d6d;
+            font-weight: bold;
+            min-width: 290px;
+            margin-top: 0;
+            margin-left: -200px;
+        }
+        .things-i-like-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.5em;
+            color: #ff4d6d;
+            font-weight: bold;
+            min-width: 260px;
+            margin-top: 0;
+            margin-left: 70px;
+        }
+        .things-you-like-box:hover, .things-i-like-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: #ffe0eb;
+            color: #d72660;
+        }
+        .things-list-modal {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 24px;
+        }
+        .thing-item-modal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #ffe0eb;
+            border-radius: 12px;
+            padding: 12px 16px;
+            box-shadow: 0 2px 8px rgba(255,77,109,0.08);
+            width: 120px;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .thing-item-modal:hover {
+            box-shadow: 0 4px 16px rgba(255,77,109,0.18);
+            transform: scale(1.05);
+        }
+        .thing-item-modal img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .thing-label-modal {
+            color: #d72660;
+            font-size: 1em;
+            text-align: center;
+        }
+        .music-player-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 32px;
+        }
+        .music-player-card {
+            background: rgba(255,255,255,0.97);
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(255,77,109,0.13);
+            padding: 32px 32px 24px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 420px;
+            width: 100%;
+        }
+        .music-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .music-album-art {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 16px;
+            box-shadow: 0 2px 8px rgba(255,77,109,0.10);
+            background: #ffe0eb;
+        }
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-top: 16px;
+            justify-content: center;
+        }
+        .music-btn {
+            background: #ffe0eb;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 8px;
+            font-size: 1em;
+            color: #ff4d6d;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .music-btn:hover {
+            background: #ffb6c1;
+            color: #d72660;
+            transform: translateY(-2px) scale(1.08);
+        }
+        #music-title {
+            color: #ff4d6d;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: left;
+        }
+        #volume-slider {
+            accent-color: #ff4d6d;
+            margin-left: 12px;
+            margin-right: 0;
+            width: 110px;
+        }
+        .music-progress-row {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+            margin-top: 2px;
+            gap: 10px;
+        }
+        .music-progress-bar {
+            flex: 1;
+            height: 6px;
+            background: #ffe0eb;
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+        }
+        .music-progress {
+            height: 100%;
+            background: #ff4d6d;
+            border-radius: 4px;
+            width: 0%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: width 0.1s linear;
+        }
+        .music-time {
+            font-size: 0.95em;
+            color: #d72660;
+            min-width: 48px;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+        .side-box-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 320px;
+            margin-top: 40px;
+            margin-bottom: 0;
+        }
+        .side-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 40px 32px;
+            min-width: 260px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #ff4d6d;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: -200px;
+            margin-right: -200px;
+            position: relative;
+            z-index: 10;
+        }
+    
+        .side-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: #ffe0eb;
+            color: #d72660;
+        }
+
+        /* Heart shape */
+        .heart {
+            position: absolute;
+            top: calc(-1 * var(--size));      /* start just above */
+            left: var(--left);                 /* horizontal start */
+            width: var(--size);
+            height: var(--size);
+            background: var(--color);
+            transform: rotate(45deg);
+            animation:
+                fall var(--fall) linear infinite,
+                sway var(--sway) ease-in-out infinite alternate;
+            animation-delay: var(--delay), 0s;
+            z-index: 0;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: var(--size);
+            height: var(--size);
+            background: var(--color);
+            border-radius: 50%;
+        }
+        .heart::before { top: calc(-0.5 * var(--size)); left: 0; }
+        .heart::after  { left: calc(-0.5 * var(--size)); top: 0; }
+
+        @keyframes fall {
+            to { top: calc(100vh + var(--size)); }
+        }
+        @keyframes sway {
+            to { left: calc(var(--left) + var(--sway-dist)); }
+        }
+
+        .heart {
+            z-index: 0;
+        }
+        .container, .collage-content, .music-player-card, img {
+            position: relative;
+            z-index: 2;
+        }
+
+        .relationship-timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #ff4d6d;
+            font-size: 0.9em;
+            font-weight: bold;
+            z-index: 1000;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-width: 260px;
+        }
+
+        .relationship-timer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: #ffe0eb;
+        }
+
+        .timer-label {
+            font-size: 1em;
+            color: #d72660;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timer-value {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .time-unit {
+            display: inline-block;
+            margin: 0 3px;
+            padding: 2px 6px;
+            background: rgba(255, 77, 109, 0.1);
+            border-radius: 6px;
+        }
+
+        .time-number {
+            font-weight: bold;
+            color: #d72660;
+        }
+
+        .site-logo-link {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .site-logo-bar {
+            display: flex;
+            align-items: center;
+            background: none;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            transition: none;
+        }
+        .site-logo-bar:hover {
+            background: none;
+            box-shadow: none;
+        }
+        .site-logo-img {
+            height: 22px;
+            width: 22px;
+            margin-right: 7px;
+            display: block;
+        }
+        .site-logo-text {
+            color: #ff4d6d;
+            font-size: 1em;
+            font-weight: bold;
+            letter-spacing: 0.2px;
+            font-family: 'Arial', sans-serif;
+            white-space: nowrap;
+        }
+
+        /* Welcome Section Styles */
+        #welcome-section {
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 10;
+            background: linear-gradient(135deg, #fde4ec 0%, #e4dafc 50%, #d4cffc 100%);
+        }
+        .welcome-card {
+            background: rgba(255, 240, 245, 0.9);
+            border: 1px solid #ffb6c1;
+            border-radius: 16px;
+            padding: 40px 60px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            max-width: 400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        #welcome-section h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3em;
+            margin-bottom: 16px;
+            color: #d72660;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        #welcome-section p {
+            margin-bottom: 32px;
+            color: #444;
+            line-height: 1.5;
+            font-size: 1.1em;
+        }
+        .enter-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #4079ff;
+            text-decoration: none;
+            border-radius: 1.25rem;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            cursor: pointer;
+            transition: box-shadow 0.5s ease-out;
+        }
+        .enter-btn:hover {
+            box-shadow: 0 0 20px rgba(64,255,170,0.4);
+        }
+        .gradient-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa);
+            background-size: 300% 100%;
+            animation: gradient 5s linear infinite;
+            border-radius: inherit;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .gradient-overlay::before {
+            content: "";
+            position: absolute;
+            left: 50%; top: 50%;
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
+            transform: translate(-50%, -50%);
+            background-color: rgba(240,240,240,0.8);
+            border-radius: inherit;
+            z-index: -1;
+        }
+        .text-content {
+            position: relative;
+            z-index: 2;
+            color: #4079ff;
+            background: none;
+            animation: none;
+        }
+        @keyframes gradient {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 0.9em;
+            color: #666;
+            pointer-events: none;
+        }
+        /* Hide main-section by default, show when active */
+        #main-section {
+            min-height: 100vh;
+            width: 100vw;
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 5;
+            background: linear-gradient(135deg, #ffdae2 0%, #e1d4fd 100%);
+        }
+        .hide-on-modal.hidden {
+            display: none !important;
+        }
+    </style>
+    
+</head>
+<body>
+    <a href="#" class="site-logo-link hide-on-modal" id="logo-link">
+        <div class="site-logo-bar">
+            <img src="heart.png" alt="Heart Logo" class="site-logo-img" />
+            <span class="site-logo-text">Masons and Jocelyn's Website <3 </span>
+        </div>
+    </a>
+<div class="relationship-timer hide-on-modal">
+    <div class="timer-label">Time Together :3</div>
+    <div class="timer-value" id="relationship-timer">Loading...</div>
+</div>
+
+    <!-- Welcome Section -->
+    <div id="welcome-section">
+        <div class="welcome-card">
+            <h1>Welcome!</h1>
+            <p>I decided to code out a website for you my love that I can keep updating throughout the years :) this will range from things that you like, things I like, and places we should go or eat! with each location that we visit, the location will get marked off until all locations are completed!</p>
+            <a href="#" class="enter-btn" id="enterBtn">
+                <div class="gradient-overlay"></div>
+                <span class="text-content">Click Me Pookie <3</span>
+            </a>
+        </div>
+        <div class="footer">© 2025 All rights reserved</div>
+    </div>
+    <!-- Main App Section -->
+    <div id="main-section" style="display:none;">
+        <div class="hearts-bg"></div>
+        <div class="container">
+            <h1>Our Journey Through the Months + More <3 </h1>
+            <div class="top-row">
+                <div class="things-you-like-box" onclick="showThingsYouLike()">
+                    <h2>Things You Like</h2>
+                </div>
+                <div class="things-i-like-box" onclick="showThingsILike()">
+                    <h2>Things I Like</h2>
+                </div>
+                <div class="memory-lane-box" onclick="showCollage()">
+                    <h2>Memory Lane</h2>
+                </div>
+            </div>
+            <div class="side-box-row">
+                <div class="side-box" id="box1" onclick="showBox1Menu()">Places We Should Go</div>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0;">
+                    <img src="2uCn.gif" alt="Togepi and Pikachu with hearts" style="max-width: 700px; width: 100%; border-radius: 20px; box-shadow: 0 4px 16px rgba(255,77,109,0.15); background: #fff0f6; padding: 10px;" />
+                    <div class="music-player-wrapper">
+                        <div class="music-player-card">
+                            <div class="music-title-row">
+                                <img id="music-album-art" class="music-album-art" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=256&q=80" alt="Album Art" />
+                                <div id="music-title"></div>
+                            </div>
+                            <div class="music-progress-row">
+                                <span id="current-time" class="music-time">0:00</span>
+                                <div class="music-progress-bar" id="music-progress-bar">
+                                    <div class="music-progress" id="music-progress"></div>
+                                </div>
+                                <span id="duration" class="music-time">0:00</span>
+                            </div>
+                            <audio id="audio-player" preload="auto"></audio>
+                            <div class="music-controls">
+                                <button id="back-btn" class="music-btn" title="Back">⏮️</button>
+                                <button id="play-btn" class="music-btn" title="Play">▶️</button>
+                                <button id="pause-btn" class="music-btn" title="Pause">⏸️</button>
+                                <button id="stop-btn" class="music-btn" title="Stop">⏹️</button>
+                                <button id="forward-btn" class="music-btn" title="Forward">⏭️</button>
+                                <button id="shuffle-btn" class="music-btn" title="Shuffle">🔀</button>
+                                <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="side-box" id="box3" onclick="showBox3Menu()">Places We Should Try</div>
+            </div>
+        </div>
+
+        <div id="collage" class="collage">
+            <div class="collage-content">
+                <button class="close-btn" onclick="hideCollage()">Close</button>
+                <h2 class="month-title" id="collage-title"></h2>
+                <div class="image-grid" id="image-grid">
+                    <!-- Images will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <div id="things-you-like-modal" class="collage" style="z-index: 1001;">
+            <div class="collage-content">
+                <button class="close-btn" onclick="hideThingsYouLike()">Close</button>
+                <h2 class="month-title">Things I think you like <3 </h2>
+                <div class="image-grid">
+                    <img src="Mason/413A1291.jpg" alt="TruFru" />
+                    <img src="jocelyn/TruFru_HC_DrkRasp_Cup_Front.png" alt="TruFru" />
+                    <img src="jocelyn/MV5BMTAxNDYxMjg0MjNeQTJeQWpwZ15BbWU3MDcyNTk2OTM@._V1_FMjpg_UX1000_.jpg" alt="Movie Poster" />
+                    <img src="jocelyn/caldo-de-res-mexican-beef-soup-2-500x375.jpg" alt="Caldo de Res" />
+                    <img src="jocelyn/laufey---press-photos---album-release-5-pc---lauren-kim-_wide-74a486f909079df947eb66ab568ebd766a1fd25a.jpg" alt="Laufey" />
+                    <img src="jocelyn/MV5BMjE1MjlmOWYtYzdjMS00OTgwLThjMDctZWU4N2FkZjgyNTJiXkEyXkFqcGc@._V1_.jpg" alt="Movie Poster 2" />
+                    <img src="jocelyn/product-hugerect-3324308-219184-1674888556-0c29c48abffb9f5245e5d46d45dd4827.jpg" alt="Product" />
+                    <img src="jocelyn/season17-on-ptv-live-169-en.png" alt="Season 17" />
+                    <img src="jocelyn/p34622_p_v8_at.jpg" alt="Movie Poster 3" />
+                    <img src="jocelyn/c3e9c84a917423739521190c0be0d5c1-1210x642.jpg" alt="Honey Mangos" />
+                    <img src="jocelyn/4-pounds-image-of-honey-mangos-fruit-1125637415.jpg" alt="Honey Mangos 2" />
+                    <img src="jocelyn/1d138dedbc35e6c5a839d09fbdaa2f2a.jpg" alt="Cute Cat" />
+                    <img src="jocelyn/Butterfree.png" alt="Butterfree" />
+                    <img src="jocelyn/marill.png" alt="Marill" />
+                </div>
+            </div>
+        </div>
+
+        <div id="things-i-like-modal" class="collage" style="z-index: 1001;">
+            <div class="collage-content">
+                <button class="close-btn" onclick="hideThingsILike()">Close</button>
+                <h2 class="month-title">Things I Like!! :P</h2>
+                <div class="image-grid">
+                    <img src="mason/41rJCgpxV8L._UF1000,1000_QL80_.jpg" alt="Dead Sea" onclick="showEnlargedImage('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=facearea&w=256&q=80', 'The Dead Sea - Float in the mineral-rich waters of Jordan')" />
+                    <img src="mason/644.png" alt="Maldives" onclick="showEnlargedImage('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=facearea&w=256&q=80', 'Maldives Overwater Bungalows - Stay in paradise above crystal clear waters')" />
+                    <img src="mason/71u6ZOpg6hL.jpg" alt="Northern Lights" onclick="showEnlargedImage('https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=facearea&w=256&q=80', 'Northern Lights - Experience the magical aurora borealis in Norway')" />
+                    <img src="Mason/f7ce860ea6654ef7b9cae53dbe2a658d.jpg" alt="Great Barrier Reef" onclick="showEnlargedImage('https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?auto=format&fit=facearea&w=256&q=80', 'Great Barrier Reef - Snorkel in the world\'s largest coral reef system')" />
+                    <img src="mason/81e5aMHwP4L.jpg" alt="Petra" onclick="showEnlargedImage('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=facearea&w=256&q=80', 'Petra, Jordan - Explore the ancient rose-red city')" />
+                    <img src="Mason/InNOut_2021_logo.svg.png" alt="Machu Picchu" onclick="showEnlargedImage('https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=facearea&w=256&q=80', 'Machu Picchu - Hike to the ancient Incan citadel in Peru')" />
+                    <img src="Mason/mexican-torta-e1523296104751-500x400.jpg" alt="Serengeti" onclick="showEnlargedImage('https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=facearea&w=256&q=80', 'Safari in Serengeti - Experience wildlife in Tanzania')" />
+                    <img src="Mason/MV5BZGVhYTMwODAtNzkzOC00ZjA5LTliNTUtYTkyYjA0MmFhNTM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Halong Bay" onclick="showEnlargedImage('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=facearea&w=256&q=80', 'Halong Bay - Cruise through Vietnam\'s stunning limestone islands')" />
+                    <img src="Mason/pieces-of-dark-chocolate-bar-yw6oGP8-600.jpg" alt="Antarctica" onclick="showEnlargedImage('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=facearea&w=256&q=80', 'Antarctica - Experience the last true wilderness on Earth')" />
+                </div>
+            </div>
+        </div>
+        <div id="box3-modal" class="collage" style="z-index: 1001;">
+            <div class="collage-content">
+                <button class="close-btn" onclick="hideBox3Menu()">Close</button>
+                <h2 class="month-title">We Should Try These Places!! </h2>
+                <div class="image-grid">
+                    <img src="places/ElGueroCanelo.png" alt="Dead Sea" onclick="showEnlargedImage('places/ElGueroCanelo.png', '🌭 El Güero Canelo (Tucson)')" />
+                    <img src="places/GlaiBaanThai.jpg" alt="Maldives" onclick="showEnlargedImage('places/GlaiBaanThai.jpg', '🇹🇭 Glai Baan Thai (Phoenix)')" />
+                    <img src="places/JuanitoTaqueria.jpg" alt="Northern Lights" onclick="showEnlargedImage('places/JuanitoTaqueria.jpg', '🌮 Juanito Taqueria (Tucson)')" />
+                    <img src="places/LuceroRooftop.jpg" alt="Great Barrier Reef" onclick="showEnlargedImage('places/LuceroRooftop.jpg', '🌆 Lucero Rooftop Bar & Terrace (Tempe/Phoenix)')" />
+                    <img src="places/PizzeriaBlanco.jpg" alt="Petra" onclick="showEnlargedImage('places/PizzeriaBlanco.jpg', ' 🍕 Pizzeria Bianco (Phoenix)')" />
+                    <img src="places/Ricemill.jpg" alt="Machu Picchu" onclick="showEnlargedImage('places/Ricemill.jpg', '🍚 Ricemill PHX (Phoenix)')" />
+                    <img src="places/RiseUpBakery.jpg" alt="Serengeti" onclick="showEnlargedImage('places/RiseUpBakery.jpg', '🥐 Rise Up Bakery (Gilbert/Phoenix metro)')" />
+                    <img src="places/SaltAndSugarTaqueria.jpg" alt="Halong Bay" onclick="showEnlargedImage('places/SaltAndSugarTaqueria.jpg', '🌈 Salt & Sugar Taqueria (Mesa/Phoenix metro)')" />
+                </div>
+            </div>
+        </div>
+
+        <div id="box1-modal" class="collage" style="z-index: 1001;">
+            <div class="collage-content">
+                <button class="close-btn" onclick="hideBox1Menu()">Close</button>
+                <h2 class="month-title">Places I want to travel to with you :P </h2>
+                <div class="image-grid">
+                    <img src="placestogo/japan.jpg" alt="Tokyo" onclick="showEnlargedImage('placestogo/japan.jpg', 'Tokyo, Japan - A vibrant city where tradition meets modernity')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/Paris.jpg" alt="Paris" onclick="showEnlargedImage('placestogo/Paris.jpg', 'Paris, France - The city of love and art')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/Bali.jpg" alt="Bali" onclick="showEnlargedImage('placestogo/Bali.jpg', 'Bali, Indonesia - A tropical paradise with rich culture')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/newyork.jpg" alt="New York" onclick="showEnlargedImage('placestogo/newyork.jpg', 'New York City, USA - The city that never sleeps')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/Paris.jpg" alt="Venice" onclick="showEnlargedImage('placestogo/Paris.jpg', 'Venice, Italy - A romantic city of canals and timeless beauty')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/london.jpg" alt="London" onclick="showEnlargedImage('placestogo/london.jpg', 'London, UK - A perfect blend of history and modern culture')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/barcelona.jpg" alt="Barcelona" onclick="showEnlargedImage('placestogo/barcelona.jpg', 'Barcelona, Spain - Art, architecture, and amazing food')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/greece.jpg" alt="Santorini" onclick="showEnlargedImage('placestogo/greece.jpg', 'Santorini, Greece - Stunning sunsets and white-washed buildings')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/Dubai.jpg" alt="Dubai" onclick="showEnlargedImage('placestogo/Dubai.jpg', 'Dubai, UAE - A futuristic city in the desert')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/SydneyAustralia.jpg" alt="Sydney" onclick="showEnlargedImage('placestogo/SydneyAustralia.jpg', 'Sydney, Australia - Beautiful beaches and iconic landmarks')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/amsterdam.jpg" alt="Amsterdam" onclick="showEnlargedImage('placestogo/amsterdam.jpg', 'Amsterdam, Netherlands - Canals, culture, and charming streets')" loading="lazy" style="cursor:pointer;" />
+                    <img src="placestogo/SouthKorea.jpg" alt="Seoul" onclick="showEnlargedImage('placestogo/SouthKorea.jpg', 'Seoul, South Korea - A perfect mix of traditional and modern')" loading="lazy" style="cursor:pointer;" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Add new modal for enlarged images -->
+        <div id="enlarged-image-modal" class="collage" style="z-index: 1002; background: rgba(196, 170, 170, 0.74);">
+            <div class="collage-content" style="max-width: 800px; padding: 40px; background: rgba(196, 170, 170, 0.74); box-shadow: 0 8px 32px rgba(255, 77, 109, 0.15);">
+                <button class="close-btn" onclick="hideEnlargedImage()" style="background: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1em; transition: background 0.3s ease;">Close</button>
+                <div style="text-align: center;">
+                    <img id="enlarged-image" src="" alt="Enlarged image" style="max-width: 100%; max-height: 70vh; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(255, 77, 109, 0.1);">
+                     <h3 id="image-title" style="color: #d72660; font-size: 1.4em; margin: 20px 0; font-weight: 600;"></h3>
+                    <div id="image-caption" style="color: #d72660; font-size: 1.1em; margin-top: 20px; text-align: left; padding: 0 20px;">
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li id="bullet-1" style="margin-bottom: 10px;">• </li>
+                            <li id="bullet-2" style="margin-bottom: 10px;">• </li>
+                            <li id="bullet-3" style="margin-bottom: 10px;">• </li>
+                            <li id="bullet-4" style="margin-bottom: 10px;">• </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Combine all image placeholders into one array for Memory Lane
+        const memoryLaneImages = [
+            'memorylane/IMG_2526.PNG',
+            'memorylane/IMG_2527.PNG',
+            'memorylane/IMG_2528.PNG',
+            'memorylane/IMG_2655.PNG',
+            'memorylane/IMG_2656.PNG',
+            'memorylane/IMG_2360.PNG',
+            'memorylane/IMG_2361.PNG',
+            'memorylane/IMG_2362.png',
+            'memorylane/IMG_2486.png',
+            'memorylane/lp_image.png',
+            'memorylane/IMG_2825.png',
+            'memorylane/IMG_2824.png',
+            'memorylane/IMG_2757.png',
+            'memorylane/IMG_2742.png',
+            'memorylane/IMG_2737.png',
+            'memorylane/IMG_2289.png',
+            'memorylane/IMG_2174.png',
+            'memorylane/IMG_2173.png',
+            'memorylane/IMG_2172.png',
+            'memorylane/IMG_2168.png',
+            'memorylane/IMG_2161 - Copy.png',
+            'memorylane/IMG_2160.png',
+            'memorylane/IMG_2158.png',
+            'memorylane/IMG_2157.png',
+            'memorylane/IMG_2150.png',
+            'memorylane/IMG_2149.png',
+            'memorylane/IMG_2136.png',
+            'memorylane/IMG_2135.png',
+            'memorylane/IMG_2134.png',
+            'memorylane/IMG_2121.png',
+            'memorylane/IMG_2114.png',
+            'memorylane/IMG_2113.png',
+            'memorylane/IMG_2112.png',
+            'memorylane/IMG_2107.png',
+            'memorylane/IMG_2106.png',
+            'memorylane/IMG_2096.png',
+            'memorylane/IMG_2088.png',
+            'memorylane/IMG_2056.png',
+            'memorylane/IMG_2055.png',
+            'memorylane/IMG_2054.png',
+            'memorylane/IMG_2051.png',
+            'memorylane/IMG_2049.png',
+            'memorylane/IMG_2048.png',
+            'memorylane/IMG_2045.png',
+            'memorylane/IMG_2044.png',
+            'memorylane/IMG_2031.png',
+            'memorylane/IMG_2030.png',
+            'memorylane/IMG_2029.png',
+            'memorylane/IMG_2028.png',
+            'memorylane/IMG_2027.png',
+            'memorylane/IMG_2023.png',
+            'memorylane/IMG_2022.png',
+            'memorylane/IMG_2006.png',
+            'memorylane/IMG_1999.png',
+            'memorylane/IMG_1963.png',
+            'memorylane/IMG_2739.mp4',
+            'memorylane/af008dd6369243b990285ef9d98c9a1d.mp4',
+            'memorylane/IMG_1958.png',
+            'memorylane/IMG_1947.png',
+            'memorylane/IMG_1946.png',
+            'memorylane/IMG_1943.png',
+            'memorylane/IMG_1936.png',
+            'memorylane/IMG_1935.png',
+            'memorylane/IMG_1934.png',
+            'memorylane/IMG_1932 - Copy.png',
+            'memorylane/IMG_1932.png',
+            'memorylane/IMG_1929.png',
+            'memorylane/IMG_1920.png',
+            'memorylane/IMG_1918.png',
+            'memorylane/IMG_1917.png',
+            'memorylane/IMG_1915.png',
+            'memorylane/IMG_1910.png',
+            'memorylane/IMG_1909.png',
+            'memorylane/IMG_1908.png',
+            'memorylane/IMG_1907.png',
+            'memorylane/IMG_1906.png',
+            'memorylane/IMG_1905.png',
+            'memorylane/IMG_1904.png',
+            'memorylane/IMG_1887.png',
+            'memorylane/IMG_1871.png',
+            'memorylane/IMG_1869.png',
+            'memorylane/IMG_1854.png',
+            'memorylane/IMG_1852.png',
+            'memorylane/IMG_1847.png',
+            'memorylane/IMG_1845.png',
+            'memorylane/IMG_1844.png',
+            'memorylane/IMG_1840.png',
+            'memorylane/IMG_1837.png',
+            'memorylane/IMG_1833.png',
+            'memorylane/IMG_1832.png',
+            'memorylane/IMG_1821.png',
+            'memorylane/IMG_1818.png',
+            'memorylane/IMG_1816.png',
+            'memorylane/IMG_1815.png',
+            'memorylane/IMG_1814.png',
+            'memorylane/IMG_1805.png',
+            'memorylane/IMG_1804.png',
+            'memorylane/IMG_1780.png',
+            'memorylane/IMG_1309.png',
+            'memorylane/IMG_1308.png',
+            'memorylane/IMG_1197.png',
+            'memorylane/IMG_1191.png',
+            'memorylane/IMG_1031.png',
+            'memorylane/IMG_1006.png',
+            'memorylane/IMG_1005.png',
+            'memorylane/IMG_0939.png',
+            'memorylane/IMG_0922.png',
+            'memorylane/IMG_0921.png',
+            'memorylane/IMG_0922 - Copy.png',
+        ];
+
+        function closeAllModals() {
+            document.querySelectorAll('.collage').forEach(m => m.style.display = 'none');
+        }
+
+        function hideLogoAndTimer() {
+            document.querySelectorAll('.hide-on-modal').forEach(el => el.classList.add('hidden'));
+        }
+        function showLogoAndTimer() {
+            document.querySelectorAll('.hide-on-modal').forEach(el => el.classList.remove('hidden'));
+        }
+
+        function showCollage() {
+            closeAllModals();
+            const collage = document.getElementById('collage');
+            const collageTitle = document.getElementById('collage-title');
+            const imageGrid = document.getElementById('image-grid');
+            
+            collageTitle.textContent = 'Memory Lane';
+            collage.style.display = 'block';
+            imageGrid.innerHTML = '';
+
+            memoryLaneImages.forEach((src, i) => {
+                let element;
+                if (src.match(/\.mp4$/i)) {
+                    element = document.createElement('video');
+                    element.src = src;
+                    element.controls = false;
+                    element.muted = true;
+                    element.style.width = '100%';
+                    element.style.height = '200px';
+                    element.style.objectFit = 'cover';
+                    element.style.borderRadius = '10px';
+                    element.style.cursor = 'pointer';
+                    element.loading = 'lazy';
+                    element.addEventListener('click', function() {
+                        showEnlargedMedia(src, true);
+                    });
+                } else {
+                    element = document.createElement('img');
+                    element.src = src;
+                    element.alt = `Memory Lane - Image ${i+1}`;
+                    element.loading = 'lazy';
+                    element.style.cursor = 'pointer';
+                    element.addEventListener('click', function() {
+                        showEnlargedMedia(src, false);
+                    });
+                }
+                imageGrid.appendChild(element);
+            });
+            hideLogoAndTimer();
+        }
+
+        function hideCollage() {
+            document.getElementById('collage').style.display = 'none';
+            showLogoAndTimer();
+        }
+
+        function showThingsYouLike() {
+            closeAllModals();
+            document.getElementById('things-you-like-modal').style.display = 'block';
+            hideLogoAndTimer();
+        }
+
+        function hideThingsYouLike() {
+            document.getElementById('things-you-like-modal').style.display = 'none';
+            showLogoAndTimer();
+        }
+
+        function showThingsILike() {
+            closeAllModals();
+            document.getElementById('things-i-like-modal').style.display = 'block';
+            hideLogoAndTimer();
+        }
+
+        function hideThingsILike() {
+            document.getElementById('things-i-like-modal').style.display = 'none';
+            showLogoAndTimer();
+        }
+
+        function showBox1Menu() {
+            closeAllModals();
+            document.getElementById('box1-modal').style.display = 'block';
+            hideLogoAndTimer();
+        }
+
+        function hideBox1Menu() {
+            document.getElementById('box1-modal').style.display = 'none';
+            showLogoAndTimer();
+        }
+        function showBox3Menu() {
+            closeAllModals();
+            document.getElementById('box3-modal').style.display = 'block';
+            hideLogoAndTimer();
+        }
+
+        function hideBox3Menu() {
+            document.getElementById('box3-modal').style.display = 'none';
+            showLogoAndTimer();
+        }
+        function showCollageDrop(type) {
+            closeAllModals();
+            document.getElementById('collage-' + type).style.display = 'block';
+        }
+
+        function hideCollageDrop(type) {
+            document.getElementById('collage-' + type).style.display = 'none';
+        }
+
+        // --- Music Player ---
+        const playlist = [
+            // Add your mp3 files here (relative or absolute paths)
+            { title: 'We Fell in Love in October (this is our song :3 )', src: 'GirlInRed.mp3', img: 'october.jpg' },
+            { title: 'Love For You - loveli lori & ovg!', src: 'loveforyou.mp3', img: 'loveforyou.jpg' },
+            { title: 'Nuestra Canción - Monsieur Periné ', src: 'conflores.mp3', img: 'conflores.jpg' },
+            { title: 'Strangers - proderics, melodybloom', src: 'strangers.mp3', img: 'strangers.jpg' },
+            { title: 'Die For You - Joji', src: 'DieforYou.mp3', img: 'jojidie.jpg' },
+            { title: 'Slow Dancing In The Dark - Joji', src: 'SlowDance.mp3', img: 'jojislow.jpg' },
+            { title: 'Lovers Rock - TV Girl', src: 'LoversRock.mp3', img: 'loversrock.jpg' },
+            { title: 'Hey Lover - The Daughters of Eve', src: 'HeyLover.mp3', img: 'heylover.jpg' },
+            { title: 'Falling Behind - Laufey', src: 'Laufey-FallingBehind.mp3', img: 'fallingbehind.jpg' },
+            { title: 'Kingston - Faye Webster', src: 'Fayewebsterkingston.mp3', img: 'kingston.jpg' },
+            { title: 'Wasted Summers - Juju', src: 'jujuWastedSummers.mp3', img: 'wastedsummer.png' },
+            { title: 'Cupid - FIFTY FIFTY', src: 'FiftyFiftyCupid.mp3', img: 'fifty.png' },
+            { title: 'My Love Mine All Mine - Mitski', src: 'MitskiMyLoveMineAllMine.mp3', img: 'mylove.png' },
+            { title: 'Give You The World - Steve Lacy', src: 'giveyoutheworld.mp3', img: 'stevelacy.webp' },
+            { title: 'Birds of a Feather - Billie Eilish', src: 'Billie.mp3', img: 'Billie.webp' },
+            { title: 'Always Forever - Cults', src: 'AlwaysForever.mp3', img: 'AlwaysForever.jpg' },
+            { title: 'Apocalypse - Cigarettes After Sex', src: 'apocalypse.mp3', img: 'sex.png' },
+            { title: 'The Perfect Pair - Beabadoobee', src: 'bea.mp3', img: 'bea.jpg' },
+            { title: 'Best Part - Daniel Caesar', src: 'bestpart.mp3', img: 'bestpart.jpg' },
+            { title: 'Dream Girl - Crisaunt', src: 'dreamgirl.mp3', img: 'dreamgirl.jpg' },
+            { title: 'Everything - The Black Shirts', src: 'everything.mp3', img: 'everything.jpg' },
+            { title: 'This Is What Falling In Love Feels Like - JVKE', src: 'fallinginlove.mp3', img: 'fallinginlove.jpg' },
+            { title: 'For The First Time - Mac DeMarco', src: 'firsttime.mp3', img: 'firsttime.jpg' },
+            { title: 'From The Start - Laufey', src: 'Fromthestart.mp3', img: 'fromthestart.png' },
+            { title: 'Get You - Daniel Caesar', src: 'getyou.mp3', img: 'getyou.jpg' },
+            { title: 'Glue Song - Beabadoobee', src: 'gluesong.mp3', img: 'gluesong.jpg' },
+            { title: 'Here With Me - D4vd', src: 'herewithme.mp3', img: 'herewithme.jpg' },
+            { title: 'Love Sick - Laufey', src: 'lovesick.mp3', img: 'lovesick.jpg' },
+            { title: 'Mrs Magic - Strawberry Guy', src: 'mrsmagic.mp3', img: 'mrsmagic.jpg' },
+            { title: 'Promise - Laufey', src: 'promise.mp3', img: 'promise.jpg' },
+            { title: 'Show Me How - Men I Trust', src: 'showmehow.mp3', img: 'showmehow.jpg' },
+            { title: 'Something About You - Eyedress & Dent May', src: 'somethingaboutyou.mp3', img: 'somethingaboutyou.jpg' },
+            { title: 'Sunny Days - Beabadoobee', src: 'sunnydays.mp3', img: 'sunnydays.jpg' },
+            { title: 'Take A Bite - Beabadoobee', src: 'takeabite.mp3', img: 'takeabite.jpg' },
+            { title: 'Valentines - Laufey', src: 'valentines.mp3', img: 'valentines.jpeg' },
+            { title: 'Love - Wave to Earth', src: 'wavetoearth.mp3', img: 'love.jpg' },
+        ];
+        let currentTrack = 0;
+        let isShuffling = false;
+        let shuffleQueue = [];
+        let shuffleIndex = 0;
+        const audio = document.getElementById('audio-player');
+        const musicTitle = document.getElementById('music-title');
+        const musicAlbumArt = document.getElementById('music-album-art');
+        const musicProgress = document.getElementById('music-progress');
+        const musicProgressBar = document.getElementById('music-progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const backBtn = document.getElementById('back-btn');
+        const forwardBtn = document.getElementById('forward-btn');
+        const shuffleBtn = document.getElementById('shuffle-btn');
+        const volumeSlider = document.getElementById('volume-slider');
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${m}:${s.toString().padStart(2, '0')}`;
+        }
+
+        audio.ontimeupdate = function() {
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+            if (audio.duration) {
+                durationEl.textContent = formatTime(audio.duration);
+                musicProgress.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+            } else {
+                durationEl.textContent = '0:00';
+                musicProgress.style.width = '0%';
+            }
+        };
+        audio.onloadedmetadata = function() {
+            durationEl.textContent = formatTime(audio.duration);
+        };
+        // Seek functionality
+        musicProgressBar.onclick = function(e) {
+            const rect = musicProgressBar.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const percent = x / rect.width;
+            if (audio.duration) {
+                audio.currentTime = percent * audio.duration;
+            }
+        };
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadTrack(index) {
+            currentTrack = index;
+            audio.src = playlist[currentTrack].src;
+            musicTitle.textContent = playlist[currentTrack].title;
+            musicAlbumArt.src = playlist[currentTrack].img;
+            // Reset progress bar and times
+            musicProgress.style.width = '0%';
+            currentTimeEl.textContent = '0:00';
+            durationEl.textContent = '0:00';
+            // If shuffling, update shuffleIndex to match the current track
+            if (isShuffling && shuffleQueue.length) {
+                const idx = shuffleQueue.indexOf(currentTrack);
+                if (idx !== -1) shuffleIndex = idx + 1;
+            }
+        }
+
+        function playTrack() {
+            audio.play();
+        }
+
+        function pauseTrack() {
+            audio.pause();
+        }
+
+        function stopTrack() {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+        function nextTrack() {
+            if (isShuffling) {
+                if (!shuffleQueue.length || shuffleIndex >= shuffleQueue.length) {
+                    // Generate a new shuffle queue
+                    shuffleQueue = Array.from({length: playlist.length}, (_, i) => i);
+                    shuffleArray(shuffleQueue);
+                    // Avoid repeating the same song
+                    if (shuffleQueue[0] === currentTrack && shuffleQueue.length > 1) {
+                        [shuffleQueue[0], shuffleQueue[1]] = [shuffleQueue[1], shuffleQueue[0]];
+                    }
+                    shuffleIndex = 0;
+                }
+                loadTrack(shuffleQueue[shuffleIndex]);
+                shuffleIndex++;
+            } else {
+                loadTrack((currentTrack + 1) % playlist.length);
+            }
+            playTrack();
+        }
+
+        function prevTrack() {
+            if (isShuffling && shuffleQueue.length && shuffleIndex > 1) {
+                shuffleIndex -= 2;
+                if (shuffleIndex < 0) shuffleIndex = 0;
+                loadTrack(shuffleQueue[shuffleIndex]);
+                shuffleIndex++;
+            } else {
+                loadTrack((currentTrack - 1 + playlist.length) % playlist.length);
+            }
+            playTrack();
+        }
+
+        playBtn.onclick = playTrack;
+        pauseBtn.onclick = pauseTrack;
+        stopBtn.onclick = stopTrack;
+        forwardBtn.onclick = nextTrack;
+        backBtn.onclick = prevTrack;
+        shuffleBtn.onclick = function() {
+            isShuffling = !isShuffling;
+            shuffleBtn.style.background = isShuffling ? '#ffb6c1' : '';
+            if (isShuffling) {
+                // Generate a new shuffle queue and start from the current track
+                shuffleQueue = Array.from({length: playlist.length}, (_, i) => i);
+                shuffleArray(shuffleQueue);
+                // Start with the current track, then the rest
+                const idx = shuffleQueue.indexOf(currentTrack);
+                if (idx > 0) {
+                    [shuffleQueue[0], shuffleQueue[idx]] = [shuffleQueue[idx], shuffleQueue[0]];
+                }
+                shuffleIndex = 1;
+            } else {
+                shuffleQueue = [];
+                shuffleIndex = 0;
+            }
+        };
+        volumeSlider.oninput = function() {
+            audio.volume = volumeSlider.value;
+        };
+        audio.onended = nextTrack;
+
+        // Load the first track on page load
+        loadTrack(0);
+
+        const HEARTS = 100;
+        const COLORS = ['#e63946','#f08080','#ff6b6b','#d90429'];
+        const heartsBg = document.querySelector('.hearts-bg');
+        for (let i = 0; i < HEARTS; i++) {
+            const h = document.createElement('div');
+            h.className = 'heart';
+            // ultra-tiny hearts: 2–6px
+            const size = Math.random() * 4 + 2;  
+            h.style.setProperty('--size', `${size}px`);
+            // random horizontal start (0–100vw)
+            const left = Math.random() * 100;
+            h.style.setProperty('--left', `${left}vw`);
+            // fall duration 8–15s
+            const fall = Math.random() * 7 + 8;
+            h.style.setProperty('--fall', `${fall}s`);
+            // negative delay so it starts partway through its fall
+            h.style.setProperty('--delay', `-${Math.random() * fall}s`);
+            // sway duration 2–5s
+            const sway = Math.random() * 3 + 2;
+            h.style.setProperty('--sway', `${sway}s`);
+            // random sway distance ±50px
+            h.style.setProperty('--sway-dist', `${Math.random() * 100 - 50}px`);
+            // pick a heart color
+            h.style.setProperty('--color', COLORS[Math.floor(Math.random() * COLORS.length)]);
+            heartsBg.appendChild(h);
+        }
+        window.showBox3Menu = showBox3Menu;
+        window.hideBox3Menu = hideBox3Menu;
+
+        // Relationship Timer
+function updateRelationshipTimer() {
+    const startDate = new Date('2024-10-19T00:00:00');
+    const now = new Date();
+
+    // Calculate total difference in milliseconds
+    let totalMs = now - startDate;
+
+    // Create temp dates to calculate months properly
+    let tempDate = new Date(startDate);
+    let months = 0;
+
+    while (new Date(tempDate.getFullYear(), tempDate.getMonth() + 1, 19) <= now) {
+        tempDate.setMonth(tempDate.getMonth() + 1);
+        months++;
+    }
+
+    const diffMs = now - tempDate;
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+    // Format display
+    let timeString = `<span class="time-unit"><span class="time-number">${months}</span> ${months === 1 ? 'Month' : 'Months'}</span> `;
+    timeString += `<span class="time-unit"><span class="time-number">${days}</span> ${days === 1 ? 'Day' : 'Days'}</span> `;
+    timeString += `<span class="time-unit"><span class="time-number">${hours}</span> ${hours === 1 ? 'Hour' : 'Hours'}</span> `;
+    timeString += `<span class="time-unit"><span class="time-number">${minutes}</span> ${minutes === 1 ? 'Minute' : 'Minutes'}</span> `;
+    timeString += `<span class="time-unit"><span class="time-number">${seconds}</span> ${seconds === 1 ? 'Second' : 'Seconds'}</span>`;
+
+    document.getElementById('relationship-timer').innerHTML = timeString;
+}
+
+
+        // Update timer every second
+        setInterval(updateRelationshipTimer, 1000);
+        updateRelationshipTimer(); // Initial update
+
+        function showEnlargedImage(imageSrc, title) { 
+            const modal = document.getElementById('enlarged-image-modal');
+            const enlargedImage = document.getElementById('enlarged-image');
+            const imageTitle = document.getElementById('image-title');
+            const bullet1 = document.getElementById('bullet-1');
+            const bullet2 = document.getElementById('bullet-2');
+            const bullet3 = document.getElementById('bullet-3');
+            const bullet4 = document.getElementById('bullet-4');
+            
+            enlargedImage.src = imageSrc;
+            imageTitle.textContent = title;
+
+            // --- REPLACE FROM HERE ---
+            const bullets = [bullet1, bullet2, bullet3, bullet4];
+            const descriptions = {
+                "El Güero Canelo": [
+                    '• Try the iconic Sonoran-style hot dog wrapped in bacon',
+                    '• Experience a James Beard award-winning local legend',
+                    '• Feast on carne asada fries, burros, and salchipapas',
+                    '• A Tucson must-visit for regional Mexican comfort food'
+                ],
+                "Glai Baan Thai": [
+                    '• Explore authentic Northern Thai street food flavors',
+                    '• Enjoy fiery Isan-style dishes and sticky rice specials',
+                    '• No MSG, just bold and fresh ingredients',
+                    '• Intimate spot perfect for foodies and cozy dates'
+                ],
+                "Juanito Taqueria": [
+                    '• Grab hearty burritos and classic combo plates',
+                    '• Homestyle Mexican cooking made fresh daily',
+                    '• Chill, unpretentious vibe locals love',
+                    '• Perfect casual stop for any time of day'
+                ],
+                "Lucero Rooftop": [
+                    '• Savor Moroccan lamb empanadas and oysters',
+                    '• Sip craft cocktails with sunset city views',
+                    '• Relax on the 16th floor rooftop at the Omni',
+                    '• A romantic and social date-night destination'
+                ],
+                "Pizzeria Bianco": [
+                    '• Taste world-famous Neapolitan-style pizza',
+                    '• Handcrafted dough and slow fermentation process',
+                    '• Try the cheese-less marinara or meatball sandwich',
+                    '• Recognized as one of the best pizzerias in America'
+                ],
+                "Ricemill PHX": [
+                    '• Build your own Asian-inspired rice or noodle bowl',
+                    '• Pick from Korean, Japanese, and Chinese sauces',
+                    '• Fast-casual with flavor-packed options downtown',
+                    '• Great for quick, customizable lunch or dinner'
+                ],
+                "Rise Up Bakery": [
+                    '• Try artisan pastries and warm breads baked daily',
+                    '• Enjoy hearty sandwiches and cozy vibes',
+                    '• Family-owned and loved by the local community',
+                    '• Perfect for a relaxing morning date or snack'
+                ],
+                "Salt & Sugar Taqueria": [
+                    '• Taste vibrant pink tacos with beet-juice tortillas',
+                    '• All-natural ingredients and bold meat seasoning',
+                    '• Enjoy rave-worthy flavors and photo-worthy food',
+                    '• A playful taqueria that makes every bite fun'
+                ]
+            };
+
+            // Try to match the title to a key in descriptions
+            let matchedKey = null;
+            for (const key in descriptions) {
+                if (title.includes(key)) {
+                    matchedKey = key;
+                    break;
+                }
+            }
+            const selected = matchedKey ? descriptions[matchedKey] : null;
+            if (selected) {
+                for (let i = 0; i < 4; i++) {
+                    bullets[i].textContent = selected[i];
+                }
+            } else {
+                for (let i = 0; i < 4; i++) {
+                    bullets[i].textContent = '• Experience something unique';
+                }
+            }
+            // --- END REPLACEMENT ---
+
+            modal.style.display = 'block';
+            hideLogoAndTimer(); // Always hide timer and logo when enlarged modal is open
+        }
+
+        function hideEnlargedImage() {
+            document.getElementById('enlarged-image-modal').style.display = 'none';
+            // Only show logo and timer if no other modal is open
+            const collage = document.getElementById('collage');
+            const box1 = document.getElementById('box1-modal');
+            const box3 = document.getElementById('box3-modal');
+            const thingsYouLike = document.getElementById('things-you-like-modal');
+            const thingsILike = document.getElementById('things-i-like-modal');
+            if ((collage && collage.style.display !== 'block') &&
+                (box1 && box1.style.display !== 'block') &&
+                (box3 && box3.style.display !== 'block') &&
+                (thingsYouLike && thingsYouLike.style.display !== 'block') &&
+                (thingsILike && thingsILike.style.display !== 'block')) {
+                showLogoAndTimer();
+            }
+        }
+
+        // Add click event listener to close enlarged image modal when clicking outside
+        document.getElementById('enlarged-image-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideEnlargedImage();
+            }
+        });
+
+        // SPA navigation logic
+        const welcomeSection = document.getElementById('welcome-section');
+        const mainSection = document.getElementById('main-section');
+        const enterBtn = document.getElementById('enterBtn');
+        const logoLink = document.getElementById('logo-link');
+
+        enterBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            welcomeSection.style.display = 'none';
+            mainSection.style.display = 'block';
+        });
+        logoLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            welcomeSection.style.display = 'flex';
+            mainSection.style.display = 'none';
+        });
+
+        // Add a new function to handle both images and videos in the enlarged modal
+        function showEnlargedMedia(src, isVideo) {
+            const modal = document.getElementById('enlarged-image-modal');
+            const enlargedImage = document.getElementById('enlarged-image');
+            // Remove any previous video if present
+            const prevVideo = document.getElementById('enlarged-video');
+            if (prevVideo) prevVideo.remove();
+            if (isVideo) {
+                enlargedImage.style.display = 'none';
+                // Create and insert video
+                const video = document.createElement('video');
+                video.id = 'enlarged-video';
+                video.src = src;
+                video.controls = true;
+                video.autoplay = true;
+                video.style.maxWidth = '100%';
+                video.style.maxHeight = '70vh';
+                video.style.borderRadius = '15px';
+                video.style.marginBottom = '20px';
+                video.style.boxShadow = '0 4px 16px rgba(255, 77, 109, 0.1)';
+                enlargedImage.parentNode.insertBefore(video, enlargedImage);
+            } else {
+                enlargedImage.style.display = '';
+                enlargedImage.src = src;
+            }
+            modal.style.display = 'block';
+            hideLogoAndTimer();
+        }
+    </script>
+</body>
+</html> 
