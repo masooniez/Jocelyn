@@ -609,6 +609,57 @@
         .hide-on-modal.hidden {
             display: none !important;
         }
+
+        @media (max-width: 768px) {
+            .top-row, .side-box-row {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .memory-lane-box,
+            .things-you-like-box,
+            .things-i-like-box,
+            .side-box {
+                margin: 10px 0;
+                min-width: 80%;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .site-logo-text {
+                font-size: 0.9em;
+            }
+
+            .welcome-card {
+                padding: 20px 30px;
+            }
+
+            .music-player-card {
+                padding: 20px;
+                width: 95%;
+            }
+
+            .collage-content {
+                max-width: 95%;
+                padding: 20px;
+            }
+
+            .month-title {
+                font-size: 1.5em;
+            }
+
+            .relationship-timer {
+                width: 90%;
+                font-size: 0.85em;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
     </style>
     
 </head>
