@@ -1340,6 +1340,10 @@ function updateRelationshipTimer() {
             const bullet3 = document.getElementById('bullet-3');
             const bullet4 = document.getElementById('bullet-4');
             const bullets = [bullet1, bullet2, bullet3, bullet4];
+
+            // Always reset title and caption display
+            imageTitle.style.display = 'block';
+            document.getElementById('image-caption').style.display = 'block';
             
             enlargedImage.src = imageUrl;
             imageTitle.textContent = title;
@@ -1364,7 +1368,7 @@ function updateRelationshipTimer() {
                     "• Enjoy yoga retreats and traditional Balinese food",
                     "• Perfect for romantic and spiritual getaways"
                 ],
-                "New York": [
+                "New York City": [
                     "• Times Square, Broadway, and Central Park",
                     "• Diverse food from every culture",
                     "• Visit the Statue of Liberty and skyline views",
@@ -1574,8 +1578,8 @@ function updateRelationshipTimer() {
                 imageTitle.style.display = 'none';
                 imageCaption.style.display = 'none';
             } else {
-                imageTitle.style.display = '';
-                imageCaption.style.display = '';
+                imageTitle.style.display = 'block';
+                imageCaption.style.display = 'block';
             }
             modal.style.display = 'block';
             hideLogoAndTimer();
